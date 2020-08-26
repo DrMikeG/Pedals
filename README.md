@@ -30,3 +30,16 @@ Untransposed note?
 Pedalboard: PK-9
 
 AC adaptor Via PK cable
+
+
+
+MP-113
+Width: 54 cm / 21,3"
+Depth: 42 cm / 16,5"
+Height: 14 cm / 5,5"
+
+
+https://www.thomann.de/gb/doepfer_mbp25_electronic_with_1_pedal.htm
+
+dimension of one bass pedal: about 530 mm (length) x 380 mm (depth) x 95 mm (height)
+

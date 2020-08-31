@@ -43,3 +43,15 @@ https://www.thomann.de/gb/doepfer_mbp25_electronic_with_1_pedal.htm
 
 dimension of one bass pedal: about 530 mm (length) x 380 mm (depth) x 95 mm (height)
 
+
+
+480
+
+446 + 1 space
+
+10 white keys
+7 black keys
+2 gaps
+
+19 key
+18 gaps

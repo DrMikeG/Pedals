@@ -1,6 +1,6 @@
 int led = 13 ; // LED on arduino
 int digitalPin = 3; // linear Hall magnetic sensor digital interface
-int analogPin = A0; // linear Hall magnetic sensor analog interface
+int analogPin = A13; // linear Hall magnetic sensor analog interface
 int digitalVal ; // digital readings
 int analogVal; // analog readings
 

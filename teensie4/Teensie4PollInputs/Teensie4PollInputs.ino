@@ -29,7 +29,7 @@ constexpr double nMagicConstForVelocity = 300.0;
 
 // Note variables
 int keyVelocity[13] = {0,0,0,0,0, 0,0,0,0,0, 0,0,0} ;
-
+int keyAssignment[13] = {36,37,38,39,40, 41,42,43,44,45, 46,47,48} ;
 
 int_fast16_t average_heading(int i, int_fast16_t sample)
 {
@@ -121,10 +121,10 @@ void loop() {
       {
         lowWaterMark[i] = analogVal;
       }
-      else
+      /*else
       {
         lowWaterMark[i]+= ((analogVal-lowWaterMark[i])*0.1);
-      }
+      }*/
       
       if (analogVal > highWaterMark[i])
       {
@@ -137,10 +137,10 @@ void loop() {
     {
       triggerCalibrated[i] = true;
     }
-    triggerWaterMark[i] = lowWaterMark[i] + (0.1 * differenceBetweenHighAndLowWaterMark);
+    triggerWaterMark[i] = lowWaterMark[i] + (0.2 * differenceBetweenHighAndLowWaterMark);
     
     //Serial.print(analogVal); // print analog value
-    if (i==0)
+    if (i==1)
     {
 
       Serial.print(lowWaterMark[i]); // print analog value
@@ -151,16 +151,17 @@ void loop() {
       Serial.print(",");              //seperator
       int_fast16_t avg = average_heading(i,analogVal);
       Serial.print(avg); // print analog value
-      Serial.print(",");              //seperator
+      //Serial.print(",");              //seperator
       //Serial.print(analogVal); // print analog value
       //Serial.print(headings[i]); // print analog value
 
+     
       
       int_fast16_t shift = shiftHistoryValues(avg);
       int velocity = velocityFromShift(lowWaterMark[i],highWaterMark[i],shift); 
       //Serial.print( shift );
       //Serial.print(",");              //seperator
-      Serial.print( velocity);
+      //Serial.print( velocity);
       
       Serial.print('\n');
     
@@ -169,14 +170,14 @@ void loop() {
         if ( keyVelocity[i] == 0 )
         {
           keyVelocity[i] = velocity;
-          MIDI.sendNoteOn(80, keyVelocity[i], channel);
+          MIDI.sendNoteOn(keyAssignment[i], keyVelocity[i], channel);
           digitalWrite (led, HIGH);
         }
       } else {
         if ( keyVelocity[i] > 0 )
         {
           keyVelocity[i] = 0;
-          MIDI.sendNoteOff(80, keyVelocity[i], channel);
+          MIDI.sendNoteOff(keyAssignment[i], keyVelocity[i], channel);
           digitalWrite (led, LOW);
         }
       }

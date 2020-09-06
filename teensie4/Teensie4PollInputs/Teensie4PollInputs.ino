@@ -23,7 +23,9 @@ int_fast16_t headings[13] = {0,0,0,0,0, 0,0,0,0,0, 0,0,0};
 constexpr int_fast16_t fractional_bits = 1;
 
 // Veclocity variables & consts
-
+int historyOfValues[5] = {0,0,0,0,0};
+constexpr int_fast16_t nHistoryValues = 5;
+constexpr double nMagicConstForVelocity = 300.0;
 
 // Note variables
 int keyVelocity[13] = {0,0,0,0,0, 0,0,0,0,0, 0,0,0} ;
@@ -51,6 +53,53 @@ void setup() {
   MIDI.begin();
 }
 
+int_fast16_t shiftHistoryValues(int_fast16_t newestValue)
+{
+  for (int i=0; i < (nHistoryValues-1); i++)
+  {
+    historyOfValues[i] = historyOfValues[i+1]; 
+  }
+  historyOfValues[nHistoryValues-1] = newestValue;
+  return historyOfValues[0] - newestValue;
+}
+
+int velocityFromShift( int_fast16_t lowWater, int_fast16_t highWater, int_fast16_t deltaInN)
+{
+  // velocity 0 to 127
+
+  // Range is highWater - lowWater
+  double range = (highWater - lowWater);
+  // Trigger is 10% range higher than lowWater
+  //int trigger = lowWater + ( 0.1 * (range) );
+
+  // Instant drop delta would be 1.0*range
+  // Slow drop delta seems to be about 0.2*range
+
+  int velocity = 0;
+  if (deltaInN > 0 && range > 0)
+  { 
+    if (deltaInN > range)
+    { 
+       deltaInN = range;
+    }
+    double deltaF = 1.0*deltaInN;
+    
+    velocity = (int)((deltaF /range) * nMagicConstForVelocity);
+  }
+
+  // Clamp
+  if (velocity < 0)
+  {
+    velocity = 0; 
+  }
+  if (velocity > 127)
+  {
+   velocity = 127; 
+  }
+  
+  return velocity;
+}
+
 void loop() {
   
   /*int note;
@@ -65,15 +114,23 @@ void loop() {
   
   for (int i=0; i < pinToPollMax; i++)
   {
+    
     analogVal = analogRead(pinsToPoll[i]);
+    
       if (analogVal < lowWaterMark[i])
       {
         lowWaterMark[i] = analogVal;
       }
+      else
+      {
+        lowWaterMark[i]+= ((analogVal-lowWaterMark[i])*0.1);
+      }
+      
       if (analogVal > highWaterMark[i])
       {
         highWaterMark[i] = analogVal;
       }
+      
 
     int differenceBetweenHighAndLowWaterMark = (highWaterMark[i] - lowWaterMark[i]);
     if (differenceBetweenHighAndLowWaterMark > triggerCalibrationThreshold)
@@ -96,7 +153,14 @@ void loop() {
       Serial.print(avg); // print analog value
       Serial.print(",");              //seperator
       //Serial.print(analogVal); // print analog value
-      Serial.print(headings[i]); // print analog value
+      //Serial.print(headings[i]); // print analog value
+
+      
+      int_fast16_t shift = shiftHistoryValues(avg);
+      int velocity = velocityFromShift(lowWaterMark[i],highWaterMark[i],shift); 
+      //Serial.print( shift );
+      //Serial.print(",");              //seperator
+      Serial.print( velocity);
       
       Serial.print('\n');
     
@@ -104,7 +168,7 @@ void loop() {
       {
         if ( keyVelocity[i] == 0 )
         {
-          keyVelocity[i] = 100;  
+          keyVelocity[i] = velocity;
           MIDI.sendNoteOn(80, keyVelocity[i], channel);
           digitalWrite (led, HIGH);
         }
@@ -121,5 +185,5 @@ void loop() {
     //Serial.print(",");              //seperator
   }
   //Serial.print('\n');        
-  delay(50);
+  delay(20);
 }

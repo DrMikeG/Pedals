@@ -63,3 +63,7 @@ I've arranged the 3 pin headers in an L-shape
 
 [orange][green ]
         [yellow]
+
+
+
+https://forum.pjrc.com/threads/61941-Exponential-Moving-Average-How-does-it-work

@@ -67,3 +67,33 @@ I've arranged the 3 pin headers in an L-shape
 
 
 https://forum.pjrc.com/threads/61941-Exponential-Moving-Average-How-does-it-work
+
+
+6.5ma = 85ma
+
+Most 3mm LEDs will be rated 20mA maximum, so 30mA is possibly bad for them.  Modern hyperbright LEDs need a lot less than 20mA to be
+bright enough for indoor use...  Perhaps your 3mm LEDs are only superbright or ultrabright? (Actually I can't remember which of
+these ghastly marketing terms is supposed to be the brightest!).
+
+As LEDs evolved from the first primitive red GaAs LEDs the brightness was improved a 1000 times or more, so there are lots of different
+brightnesses available depending on the process used.  The datasheet will normally say what the luminous intensity, beam angle and
+luminous flux are for a given forward current.  Just beam angle can have massive effect on luminous intensity.
+
+These days properly bright LEDs use heterojunction/quantum well design similar to semiconductor lasers, and are getting pretty close to
+100% quantum efficiency.
+
+1--5mA is normally plenty for a modern indicator LED.  The smaller the LED the less current you need for it to hurt your eyes!
+
+## 14th Sept 2020 ##
+
+I've printed KeyMechRig05.stl and KeyMech02.par
+Changes required.
+Spring needs to mount parallel betwee rear arm and rear fixing. Needs more stretch at rest 2-3mm
+Could change mounting position to print without support if it only pulled on one side of the rear post.
+
+Board mount for sensor is higher than before. Lower by ~2 mm
+Board still tends to twist. Add bar at rear and tabs at front,
+
+Cannot tap screws into central screw holes. Not enough clearance.
+Front and rear screw holes are a bit close to the front surfaces.
+

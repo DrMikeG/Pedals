@@ -1,6 +1,6 @@
 Solid Edge Translation to STL
-Date: Wednesday,August 26,2020 10:26PM
-Source File:C:\Users\gibbens\Documents\Arduino\Pedals\prototype\KeyMechRig01.par
+Date: Monday,September 14,2020 06:17PM
+Source File:C:\Users\gibbens\Documents\Arduino\Pedals\prototype\KeyMech03Main_NoBearing.par
 Source System: SOLID EDGE
 
 Hardware:
@@ -15,7 +15,7 @@ Solid Edge Version: 222.00.00.023 x64
 
 STL Export Options:
 Output File Format:BINARY
-Export Displayed Parts:Off
+Export Displayed Parts:On
 structureOption: Monolithic
 Export Units:Millimeter
 Export Tolerance Value:0.001000
@@ -27,4 +27,4 @@ Phase 1 of 2 Fetching Parasolid information...
 Phase 2 of 2 Translating Parasolid to foreign data types...
 Number of STL file Created : 1
 Translation process completed
-Time required to translate:00 : 00 : 00
+Time required to translate:00 : 00 : 01

@@ -97,3 +97,4 @@ Board still tends to twist. Add bar at rear and tabs at front,
 Cannot tap screws into central screw holes. Not enough clearance.
 Front and rear screw holes are a bit close to the front surfaces.
 
+How to wire FC16P

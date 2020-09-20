@@ -140,19 +140,19 @@ void loop() {
     triggerWaterMark[i] = lowWaterMark[i] + (0.2 * differenceBetweenHighAndLowWaterMark);
     
     //Serial.print(analogVal); // print analog value
-    if (i==1)
+    if (i==0)
     {
 
-      Serial.print(lowWaterMark[i]); // print analog value
-      Serial.print(",");              //seperator
-      Serial.print(highWaterMark[i]); // print analog value
-      Serial.print(",");              //seperator
-      Serial.print(triggerWaterMark[i]); // print analog value
-      Serial.print(",");              //seperator
+      //Serial.print(lowWaterMark[i]); // print analog value
+      //Serial.print(",");              //seperator
+      //Serial.print(highWaterMark[i]); // print analog value
+      //Serial.print(",");              //seperator
+      //Serial.print(triggerWaterMark[i]); // print analog value
+      //Serial.print(",");              //seperator
       int_fast16_t avg = average_heading(i,analogVal);
       Serial.print(avg); // print analog value
-      //Serial.print(",");              //seperator
-      //Serial.print(analogVal); // print analog value
+      Serial.print(",");              //seperator
+      Serial.print(analogVal); // print analog value
       //Serial.print(headings[i]); // print analog value
 
      

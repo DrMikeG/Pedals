@@ -1,5 +1,5 @@
 Solid Edge Translation to STL
-Date: Wednesday,September 23,2020 07:04PM
+Date: Sunday,September 27,2020 08:35AM
 Source File:C:\Users\gibbens\Documents\Arduino\Pedals\prototype\TeensieHolder.par
 Source System: SOLID EDGE
 
@@ -27,4 +27,4 @@ Phase 1 of 2 Fetching Parasolid information...
 Phase 2 of 2 Translating Parasolid to foreign data types...
 Number of STL file Created : 1
 Translation process completed
-Time required to translate:00 : 00 : 01
+Time required to translate:00 : 00 : 00

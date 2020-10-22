@@ -99,5 +99,17 @@ Front and rear screw holes are a bit close to the front surfaces.
 
 How to wire FC16P
 
+## Start again ##
 
+I wired up all the analog pins incorrectly - I mirrored the pin placement and wired them up to the digital pins on the wrong edge of the teensy.
 
+Doh.
+
+Thankfull I was able to remove the teensie from the protoboard and start again.
+
+My on/off switches arrived today. They have an internal resistor for the LED.
+
+They draw about 1ma at 3.3V.
+If I connect black to gnd and brown to 3.3 then the LED lights up when the teensy is on.
+If I wire yellow to gnd and orange to on/off - then a long hold turns off the teensie (this turns off 3.3V but not 5V) so the LED goes off. A short press turns it back on.
+Can I reduce the number of wires to 3? I've asked the forum because I am not sure.

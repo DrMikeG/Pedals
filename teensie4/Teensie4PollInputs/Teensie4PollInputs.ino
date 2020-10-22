@@ -4,7 +4,7 @@ MIDI_CREATE_INSTANCE(HardwareSerial, Serial1, MIDI);
 const int channel = 1;
 
 // Skip A11 because I only need 13 and I burnt the pad off Pin 11...
-int pinsToPoll[13] = {A0, A1, A2, A3, A4, A5, A6, A7, A8, A9, A10, A12, A13};
+int pinsToPoll[13] = {A0, A1, A2, A3, A4, A5, A6, A7, A8, A9, A13, A12, A10};
 int pinToPollMax = 13;
 
 int led = 13 ; // LED on arduino
@@ -12,7 +12,7 @@ int analogVal; // analog readings
 
 
 // Triggering variables & consts
-int lowWaterMark[13] = {512,512,512,512,512, 512,512,512,512,512, 512,512,512};
+int lowWaterMark[13] = {700,700,700,700,700, 700,700,700,700,700, 700,700,700};
 int highWaterMark[13] = {0,0,0,0,0, 0,0,0,0,0, 0,0,0};
 int triggerWaterMark[13] = {0,0,0,0,0, 0,0,0,0,0, 0,0,0};
 bool triggerCalibrated[13] = {false,false,false,false,false, false,false,false,false,false, false,false,false};
@@ -138,9 +138,11 @@ void loop() {
       triggerCalibrated[i] = true;
     }
     triggerWaterMark[i] = lowWaterMark[i] + (0.2 * differenceBetweenHighAndLowWaterMark);
+
+    bool displayOn = true;//(i == 12);
     
     //Serial.print(analogVal); // print analog value
-    if (i==0)
+    if (displayOn)
     {
 
       //Serial.print(lowWaterMark[i]); // print analog value
@@ -150,11 +152,25 @@ void loop() {
       //Serial.print(triggerWaterMark[i]); // print analog value
       //Serial.print(",");              //seperator
       int_fast16_t avg = average_heading(i,analogVal);
-      Serial.print(avg); // print analog value
-      Serial.print(",");              //seperator
-      Serial.print(analogVal); // print analog value
-      //Serial.print(headings[i]); // print analog value
 
+      bool printD =  (displayOn);
+      if (printD)
+      {
+        Serial.print(avg); // print analog value
+        Serial.print(",");              //seperator
+        Serial.print(analogVal); // print analog value
+       //Serial.print(headings[i]); // print analog value
+        Serial.print(",");              //seperator
+        if (false)
+        {
+          Serial.print(lowWaterMark[i]); // print analog value
+          Serial.print(",");              //seperator
+          Serial.print(highWaterMark[i]); // print analog value
+          Serial.print(",");              //seperator
+          Serial.print(triggerWaterMark[i]); // print analog value
+          Serial.print(",");              //seperator
+        }
+      }
      
       
       int_fast16_t shift = shiftHistoryValues(avg);
@@ -162,14 +178,14 @@ void loop() {
       //Serial.print( shift );
       //Serial.print(",");              //seperator
       //Serial.print( velocity);
+
       
-      Serial.print('\n');
-    
       if ( avg < triggerWaterMark[i] && triggerCalibrated[i])
       {
         if ( keyVelocity[i] == 0 )
         {
-          keyVelocity[i] = velocity;
+          //keyVelocity[i] = velocity;
+          keyVelocity[i] = 100;
           MIDI.sendNoteOn(keyAssignment[i], keyVelocity[i], channel);
           digitalWrite (led, HIGH);
         }
@@ -183,8 +199,10 @@ void loop() {
       }
               
     }
+   // Serial.print('\n');
+     
     //Serial.print(",");              //seperator
-  }
-  //Serial.print('\n');        
+  }// end for for each pin
+ Serial.print('\n');        
   delay(20);
 }

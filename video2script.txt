@@ -1,0 +1,26 @@
+Here I have three keys printed and wired up to the teensie 4.0
+There is a hall effects sensor for each key, and they key moves a magnet.
+The teensie sends the appropriate midi code to garage band on the Mac, which turns that into an instrument sound.
+
+It took a couple of hours to print and assembly a key mechanism, so I added two more over the next couple of days.
+
+Any now the piano needs it's wooden pedal keys. I'm using white oak and sepele - they're are economic, ethical, and I already had some in stock.
+
+I'm actually not very good at cutting small, identical bits of wood, so I used pretty much every trick and jig at my disposal.
+
+One of the strange things I found is that, although I've never learned to play the piano, if I have something that even looks like a piano - my fingers want to play it. I expect at lot of people have that.
+
+I am imagining this instrument will be played by socked-feet, so I'm adding some notches for friction.
+I was a bit worried about feet slipping off the smooth pedal keys.
+
+I was debating square front, versus round fronted keys, so whilst I deliberated, I cleaned up the workshop.
+Then I committed to rounded fronts.
+
+One of the benefits of having modelled the entire piece in CAD was that I was pretty confident of the sizing - but it was still very pleasant to see the keys in real life and not just in the computer modelled assembly.
+
+In an effort to reduce costs, I based most of the design around m2.5 22mm fixings that I already have a huge bag of. The downside of this was that something I didn't have clearance for them, and needed to shorted them with bolt croppers. (Using a dremel got them too hot and melted the ABS printed parts)
+
+And now a coating of Danish Oil on the keys. This is always quite a theroputic task.
+   
+
+     
